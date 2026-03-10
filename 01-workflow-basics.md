@@ -43,13 +43,12 @@ Every feature gets a **single self-contained directory** under `docs/features/`.
 ```
 docs/features/
 └── user-authentication/             ← one directory per feature
-    ├── README.md                    ← master doc: links all artifacts, shows current status
     ├── requirements.md              ← what we agreed to build
     ├── plan.md                      ← implementation plan + live task checklist
     └── verification.md              ← verification report (filled in at verify phase)
 ```
 
-This means to understand a feature end-to-end — what was required, how it was planned, what was built, whether it passed — you open one folder. No hunting across directories.
+This means to understand a feature end-to-end — what was required, how it was planned, what was built, whether it passed — you open one folder. All artifacts live together in one place.
 
 `docs/features/` is committed to git alongside your code, giving you a permanent record of every feature's lifecycle.
 
@@ -88,10 +87,9 @@ All feature work is tracked under `docs/features/<feature-name>/`:
 - requirements.md  — what was agreed to build
 - plan.md          — implementation plan + task checklist (live progress)
 - verification.md  — verification report
-- README.md        — master status doc linking all artifacts
 
 Always read `docs/features/<feature-name>/plan.md` at the start of
-an implementation session to find the current state and next task.
+a session to check the current Status field and find the next task.
 
 ## My Coding Preferences (All Projects)
 - TypeScript strict mode — always explicit types, no `any` unless absolutely justified
@@ -144,7 +142,7 @@ Start a new work session. Do the following in order:
 2. If ./CLAUDE.md exists, read it (project context)
 3. If ./ROADMAP.md exists, read it (project backlog)
 4. Run `git log --oneline -5` to see recent commits
-5. Check docs/features/ for any README.md with status "🚧 In Progress"
+5. Check docs/features/ for any plan.md containing status "🚧 In Progress"
 
 Then give me a 3-5 line summary:
 - What project this is and what it does
@@ -171,7 +169,6 @@ Do the following:
 5. Wait for my answers
 6. Write a clear "Agreement Summary" of what we've agreed to build
 7. Save the agreed requirements to docs/features/$ARGUMENTS/requirements.md
-8. Update docs/features/$ARGUMENTS/README.md status to "📋 Requirements Agreed"
 
 Do NOT start planning or writing code yet.
 ```
@@ -223,10 +220,8 @@ The strategy. Key decisions and why. Tradeoffs considered.
 - Risk 1 and mitigation
 ```
 
-**Phase 3 — Update README and present**
-Update docs/features/$ARGUMENTS/README.md:
-- Set Status to "📐 Plan Ready — Awaiting Approval"
-- Link to plan.md
+**Phase 3 — Present the plan**
+Update docs/features/$ARGUMENTS/plan.md Status to "📐 Plan Ready — Awaiting Approval".
 
 Then show me the plan and say:
 "Please review docs/features/$ARGUMENTS/plan.md. Edit it directly if needed. Reply 'approved' to proceed."
@@ -245,7 +240,6 @@ Before writing a single line of code:
 2. Confirm status is not already "✅ Complete"
 3. Find the first unchecked [ ] task
 4. Update plan.md Status to "🚧 In Progress"
-5. Update docs/features/$ARGUMENTS/README.md status to "🚧 In Progress"
 
 Then for each task:
 - Announce: "Starting task N: [task name]"
@@ -302,7 +296,6 @@ If anything fails: fix it, re-run, update the report.
 
 If everything passes:
 - Update docs/features/$ARGUMENTS/plan.md Status to "✅ Complete — [date]"
-- Update docs/features/$ARGUMENTS/README.md status to "✅ Complete — [date]"
 - Tell me: "Ready to commit. Suggested message: feat($ARGUMENTS): [one line summary]"
 ```
 
@@ -487,20 +480,6 @@ Claude reads all context, checks `docs/features/` for in-progress work, and orie
 mkdir -p docs/features/user-authentication
 ```
 
-Create `docs/features/user-authentication/README.md`:
-```markdown
-# Feature: User Authentication
-**Status:** 📝 Draft
-
-## Overview
-JWT-based authentication with login, registration, and role-based access control.
-
-## Artifacts
-- [Requirements](requirements.md)
-- [Plan](plan.md)
-- [Verification](verification.md)
-```
-
 Create `docs/features/user-authentication/requirements.md` (you write this):
 ```markdown
 # Requirements: User Authentication
@@ -566,9 +545,8 @@ Update `ROADMAP.md`: move from `🚧 In Progress` → `✅ Completed`.
 
 ```
 docs/features/user-authentication/
-├── README.md             ← Status: ✅ Complete — 2026-03-08
 ├── requirements.md       ← What was agreed to build
-├── plan.md               ← All tasks checked [x], Status: ✅ Complete
+├── plan.md               ← All tasks checked [x], Status: ✅ Complete — 2026-03-08
 └── verification.md       ← All checks passed, acceptance criteria met
 ```
 
@@ -596,9 +574,8 @@ your-project/                           ← PROJECT (this project only)
 ├── docs/
 │   └── features/                       ← ALL feature work tracked here
 │       └── user-authentication/        ← one folder per feature
-│           ├── README.md               ← master status + links
 │           ├── requirements.md         ← agreed requirements
-│           ├── plan.md                 ← plan + live task checklist
+│           ├── plan.md                 ← plan + live task checklist + status
 │           └── verification.md         ← verification report
 └── .claude/
     ├── settings.json                   ← Language-specific hooks

@@ -1,6 +1,6 @@
 # claude-code-handbook
 
-A practical, opinionated handbook for working professionally with Claude Code — workflows, slash commands, skills, agents, and MCP integrations.
+Experimenting with Claude Code in daily software engineering — workflows, slash commands, skills, agents, and MCP integrations.
 
 ---
 
@@ -8,7 +8,10 @@ A practical, opinionated handbook for working professionally with Claude Code �
 
 | File | Description | Status |
 |---|---|---|
-| [`workflow-basics.md`](workflow-basics.md) | 5-phase workflow, global slash commands, per-project setup | ✅ Available |
+| [`workflow-basics.md`](01-workflow-basics.md) | 5-phase workflow, global slash commands, per-project setup | ✅ Available |
+| `skills.md` | Writing and managing reusable skills | 🔜 Coming soon |
+| `agents.md` | Building specialized subagents | 🔜 Coming soon |
+| `mcps.md` | MCP server setup and integrations | 🔜 Coming soon |
 
 ---
 
