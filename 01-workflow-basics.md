@@ -112,6 +112,8 @@ At the start of every session, before doing anything else:
 - Update checkboxes [ ] → [x] as each task completes — do not wait until the end
 - If the context window fills up mid-task, update the plan file checkboxes before stopping
 - ROADMAP.md is the high-level backlog; feature folders are the detailed tracking
+- In plan.md, implementation tasks come first, test tasks last.
+  Tests cover only code introduced or modified by the feature.
 
 ## Communication Style
 - Be concise. I don't need explanations of what you just did — I can read the diff.
@@ -205,9 +207,18 @@ What exists today that's relevant. What patterns to follow.
 The strategy. Key decisions and why. Tradeoffs considered.
 
 ## Tasks
-- [ ] 1. [First task — small, concrete, testable]
-- [ ] 2. [Second task]
+
+List all implementation tasks first. Add test tasks at the end, one per
+logical unit of new code. Tests cover only the code introduced by this feature.
+
+### Implementation
+- [ ] 1. [First logic task]
+- [ ] 2. [Second logic task]
 - [ ] 3. ...
+
+### Tests
+- [ ] T1. [Unit tests for X — cover only new/modified code]
+- [ ] T2. [Unit tests for Y — cover only new/modified code]
 
 ## Files to Create / Modify
 - `path/to/file.ts` — what changes and why
@@ -241,16 +252,23 @@ Before writing a single line of code:
 3. Find the first unchecked [ ] task
 4. Update plan.md Status to "🚧 In Progress"
 
-Then for each task:
+Then for each task in order (Implementation first, then Tests):
 - Announce: "Starting task N: [task name]"
 - Implement it
-- Run relevant tests if available
 - Update plan.md: [ ] → [x] immediately after completing the task
 - Announce: "✅ Task N done. Starting task N+1..."
 
+When all Implementation tasks are checked and before starting Tests:
+- Announce: "⚙️ Logic complete. Starting test tasks."
+
+For Test tasks:
+- Write tests that cover only the code introduced or modified in this feature
+- Run them — fix failures before moving to the next test task
+
 Rules:
 - If you encounter something not in the plan, STOP and ask me before proceeding
-- If tests fail, fix them before moving to the next task
+- Write tests only for code introduced or modified by this feature — do not write tests for pre-existing code
+- If test tasks fail, fix the test (or the logic if a bug is found) before moving on
 - If the context window is getting full, save all checkbox state to plan.md first
 - After all tasks: update plan.md Status to "Implementation Complete — Awaiting Verification"
 
